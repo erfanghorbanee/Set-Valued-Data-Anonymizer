@@ -8,41 +8,44 @@ def get_result(att_tree, data, k=10):
     """
     run partition for one time, with k=10 by default
     """
-    print("K=%d" % k)
-    _, eval_result = partition(att_tree, data, k)
-    print("NCP %0.2f" % eval_result[0] + "%")
-    print("Running time %0.2f" % eval_result[1] + " seconds")
+    print(f"K={k}")
+    result, eval_result = partition(att_tree, data, k)
+
+    print(f"NCP {eval_result[0]:0.2f}%")
+    print(f"Running time {eval_result[1]:0.2f} seconds")
+
+    # write anonymized data to file
+    # with open('output.csv', 'w') as file:
+    #     for record in result:
+    #         file.write(f"{record}\n")
 
 
 if __name__ == "__main__":
-    INPUT_K = ""
-
-    try:
-        INPUT_K = sys.argv[1]
-    except IndexError:
-        pass
-
     print("BMS-WebView data")
-    DATA = read_data()
-    ATT_TREE = read_tree_file()
 
-    # read generalization hierarchy
-    # read record
-    # remove duplicate items
-    DATA = list(DATA)
-    for i in range(len(DATA)):
-        DATA[i] = list(set(DATA[i]))
+    # Read the necessary data and tree structure
+    data = read_data()
+    att_tree = read_tree_file()
+
+    # Process data: remove duplicate items
+    data = list(data)
+    for i in range(len(data)):
+        data[i] = list(set(data[i]))
 
     print("Begin Partition")
 
-    if INPUT_K == "":
-        get_result(ATT_TREE, DATA)  # K=10 by default
-    else:
+    # Determine K value from command-line arguments or use default k=10
+    k = 10
+    if len(sys.argv) > 1:
         try:
-            INPUT_K = int(INPUT_K)
-            get_result(ATT_TREE, DATA, INPUT_K)
+            k = int(sys.argv[1])
         except ValueError:
-            print("Usage: python anonymizer k")  # k=10 by default
+            print("Usage: python anonymizer.py [k]")
+            print("k=10 by default")
+            sys.exit(1)
 
-    # anonymized dataset is stored in result
+    # Execute the main functionality
+    get_result(att_tree, data, k)
+
+    # Final message
     print("Finish Partition!!")

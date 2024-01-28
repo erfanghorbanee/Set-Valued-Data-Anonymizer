@@ -30,8 +30,11 @@ def read_tree_file():
 
 def read_data():
     bms_webview2 = open("data/BMS-WebView-2.dat", "r")
+
     print("Reading Data...")
+
     bmwdata = {}
+
     for line in bms_webview2:
         line = line.strip()
         row = line.split("\t")
