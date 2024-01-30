@@ -7,6 +7,8 @@
 
 An application of the "Anonymization of Set-Valued Data via Top-Down, Local Generalization" article.
 
+**NOTE: THIS IS A SIMPLIFIED AND REFORMATTED VERSION OF [THIS REPO](https://github.com/qiyuangong/Partition_for_Transaction).**
+
 ## Usage
 
 Run command in your terminal:
@@ -14,6 +16,7 @@ Run command in your terminal:
 
 **Note: K is set to 10 by default.**
 
-## Rescourses
+## Resources
 
 - He, Y. & Naughton, J. F. Anonymization of set-valued data via top-down, local generalization Proc. VLDB Endow., VLDB Endowment, 2009, 2, 934-945
+- [Partition_for_Transaction(original code)](https://github.com/qiyuangong/Partition_for_Transaction)
